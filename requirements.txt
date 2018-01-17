@@ -1,0 +1,5 @@
+Flask
+gevent
+gevent-websocket
+Flask-SocketIO
+socketIO-client-2
