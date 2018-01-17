@@ -15,6 +15,7 @@ socketio = SocketIO(path='ws', logger=False, engineio_logger=False, async_mode='
 
 @socketio.on('write_task_log', namespace='/test')
 def handle_task_log(message):
+    print('get write_task_log')
     socketio.emit(
         'send_log',
         task_log(message),

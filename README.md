@@ -1,3 +1,5 @@
+prepare for anwser: https://stackoverflow.com/questions/29461028/flask-rabbitmq-socketio-forwarding-messages
+
 > my code running environment:
 > * OS: ubuntu 16.04 LTS
 > * Python: 3.5.2

@@ -1,4 +1,5 @@
-# run.py
+# -*- coding: utf-8 -*-
+import time
 from threading import Thread
 
 from flask import Flask, request
@@ -50,14 +51,34 @@ def send_msg(msg):
         'resource': 'ws'
     }
     ws_client = get_ws_client(ws_cfg)
+    print('before emit')
     ws_client.emit('write_task_log', 'msg: ' + msg, path='/test')
-    ws_client.disconnect()
+    print('after emit')
+    # import time; time.sleep(3)
+    ws_client.disconnect('/test') # specify path because of emit 
 
 @app.route("/task")
 def view_task():
     msg = request.values.get('msg', 'empty msg')
     send_msg(msg)
     return 'send task ok'
+
+def thread_func():
+    print('before sleep')
+    for i in range(1, 6):
+        time.sleep(1)
+        print('sleep [', i, '/ 5]')
+    print('after sleep')
+    send_msg('msg')
+    print('after send msg')
+
+@app.route("/thread")
+def view_thread():
+    print('before thread')
+    thread = Thread(target=thread_func)
+    thread.start()
+    print('after thread')
+    return 'thread executed ok'
 
 if __name__ == '__main__':
     cfg = {

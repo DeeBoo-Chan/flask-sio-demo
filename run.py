@@ -1,6 +1,4 @@
-# run.py
-from threading import Thread
-
+# -*- coding: utf-8 -*-
 from flask import Flask, request
 
 from sio_server import socketio
